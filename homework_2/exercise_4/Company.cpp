@@ -98,7 +98,6 @@ Company & Company::operator=(const Company & other)
 		this->employees_count = other.employees_count;
 	}
 	return *this;
-
 }
 
 std::ostream & operator<<(std::ostream & out, const Company & other)
