@@ -1,1 +1,1 @@
-# c-stuff
+# c++ homeworks and exercises
