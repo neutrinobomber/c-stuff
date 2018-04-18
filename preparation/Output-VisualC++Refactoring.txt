@@ -1,0 +1,45 @@
+﻿
+Renamed 'funName' to 'func_name':
+---------------------------------
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(7, 9)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(24, 24)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(26, 10)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(28, 17)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(32, 4)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(34, 11)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(35, 10)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(40, 2)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(40, 32)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(41, 11)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(41, 31)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(41, 49)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(42, 10)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(47, 10)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(48, 11)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(54, 7)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(54, 33)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(55, 3)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(55, 33)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(56, 12)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(56, 32)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(56, 50)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(64, 6)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(66, 12)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(69, 2)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(70, 11)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(77, 9)
+
+Renamed 'setFunName' to 'set_func_name':
+----------------------------------------
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(17, 7)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(62, 16)
+
+Renamed 'setOut' to 'set_out':
+------------------------------
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(18, 7)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(73, 16)
+
+Renamed 'getFunName' to 'get_fun_name':
+---------------------------------------
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(20, 15)
+c:\Users\shutdown\Desktop\cpp-stuff\preparation\preparation_5\main.cpp(75, 24)
