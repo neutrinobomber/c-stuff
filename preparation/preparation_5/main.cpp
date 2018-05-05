@@ -53,5 +53,12 @@ int main()
 	CSchool s("School1", 2, arrStud);
 	cout << s << endl;
 
+	int len = 10;
+	CStudent ** students = new CStudent*[len];
+	for (size_t i = 0; i < len; i++)
+	{
+		students[i] = new CStudent();
+	}
+
 	return 0;
 }
