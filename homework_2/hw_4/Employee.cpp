@@ -6,7 +6,7 @@
 Employee::Employee() : name(nullptr), salary(0), experience(0) 
 {
 	this->set_name("\0");
-};
+}
 
 Employee::Employee(const char * name, unsigned salary, unsigned experience) :
 	name(nullptr),
