@@ -1,8 +1,9 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
-void binary_insertion_sort(int arr[], int len)
+void binaryInsertionSort(int arr[], int len)
 {
 	for (int i = 1; i < len; i++)
 	{
@@ -37,7 +38,7 @@ void binary_insertion_sort(int arr[], int len)
 	}
 }
 
-void linear_equation_system()
+void linearEquationSystem()
 {
 	const int rows = 3;
 	const int cols = 4;
@@ -76,18 +77,34 @@ void linear_equation_system()
 	}
 }
 
+double f(double a, double b, double c, double x)
+{
+	// this is a * x * x + b * x + c = 0, but with extracted x
+	return -(a * x * x + c) / b;
+}
+
+double findRoot(double a, double b, double c, double x, double delta)
+{
+	double fx = 0, diff = 0;
+	unsigned currentIter = 1;
+	unsigned maxIter = 1000000;
+
+	do
+	{
+		fx = f(a, b, c, x);
+		diff = fabs(x - fx);
+		x = fx;
+
+		currentIter++;
+	} while (diff >= delta && currentIter <= maxIter);
+
+	return x;
+}
+
 int main()
 {
-	const int len = 5;
-	int arr[len] = { 8, 7, 1, 3, 4 };
-
-	binary_insertion_sort(arr, len);
-
-	for (size_t i = 0; i < len; i++)
-	{
-		cout << arr[i] << " ";
-	}
-	cout << endl;
+	double res = findRoot(1, -10, 19, -10, 0.00001);
+	cout << "root: " << res << endl;
 
 	return 0;
 }
