@@ -101,10 +101,48 @@ double findRoot(double a, double b, double c, double x, double delta)
 	return x;
 }
 
+double f2(double x)
+{
+	double a = 8, b = 7, c = 1, d = 3;
+	return a * pow(cos(x), 3) + b * sin(pow(x, 2)) + 1. / 10. * c * x + d;
+}
+
+void findRootScan(double start, double end, double spacing)
+{
+	unsigned rootsFound = 0;
+	unsigned rootsToFind = 5;
+	double left = 0, right = 0, leftRes = 0, rightRes = 0, mid = 0;
+
+	for (double i = start; i <= end; i += spacing)
+	{
+		left = i;
+		right = i + spacing;
+		leftRes = f2(left);
+		rightRes = f2(right);
+
+		if (leftRes * rightRes < 0 && rootsFound <= rootsToFind)
+		{
+			rootsFound++;
+
+			mid = (left + right) / 2;
+			cout << "found root:" << endl;
+			cout << "    x: " << mid << endl;
+			cout << "    f(x): " << f2(mid) << endl;
+		}
+	}
+}
+
 int main()
 {
-	double res = findRoot(1, -10, 19, -10, 0.00001);
-	cout << "root: " << res << endl;
+	double start = -20;
+	double end = 20;
+	double spacing = 0.001;
 
+	cout << "start: " << start << endl
+		<< "end: " << end << endl
+		<< "spacing: " << spacing << endl << endl;
+
+	findRootScan(start, end, spacing);
+	
 	return 0;
 }
