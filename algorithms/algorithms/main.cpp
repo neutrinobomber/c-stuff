@@ -32,7 +32,10 @@ void binaryInsertionSort(int arr[], int len)
 		if (mid < i)
 		{
 			int tmp = arr[i];
-			arr[i] = arr[mid];
+			for (int j = i - 1; j >= mid; j--)
+			{
+				arr[j + 1] = arr[j];
+			}
 			arr[mid] = tmp;
 		}
 	}
@@ -111,7 +114,7 @@ void findRootScan(double start, double end, double spacing)
 {
 	unsigned rootsFound = 0;
 	unsigned rootsToFind = 5;
-	double left = 0, right = 0, leftRes = 0, rightRes = 0, mid = 0;
+	double left = 0, right = 0, leftRes = 0, rightRes = 0, root = 0;
 
 	for (double i = start; i <= end; i += spacing)
 	{
@@ -124,18 +127,79 @@ void findRootScan(double start, double end, double spacing)
 		{
 			rootsFound++;
 
-			mid = (left + right) / 2;
+			root = (left + right) / 2;
 			cout << "found root:" << endl;
-			cout << "    x: " << mid << endl;
-			cout << "    f(x): " << f2(mid) << endl;
+			cout << "    x: " << root << endl;
+			cout << "    f(x): " << f2(root) << endl;
 		}
 	}
 }
 
+void findRootBinary(double left, double right, double delta)
+{
+	if (f2(left) * f2(right) < 0)
+	{
+		bool foundMid = false;
+		double mid = 0;
+		double distance = 0;
+
+		do
+		{
+			mid = (left + right) / 2.;
+
+			if (f2(right) * f2(mid) < 0)
+			{
+				left = mid;
+			}
+			else
+			{
+				right = mid;
+			}
+
+			foundMid = f2(mid) == 0.;
+			distance = fabs(left - right);
+		} while (!(distance <= delta || foundMid == true));
+
+		cout << "found root: " << endl
+			<< "x: " << mid << endl
+			<< "f(x): " << f2(mid) << endl;
+	}
+	else
+	{
+		cout << "no roots in interval" << endl;
+	}
+}
+
+void bubbleSort()
+{
+	const int len = 5;
+	int arr[len] = { 5,4,3,2,1 };
+	bool swapped = true;
+	int iteration = 0;
+
+	while (swapped)
+	{
+		swapped = false;
+		for (size_t i = 0; i < len - iteration - 1; i++)
+		{
+			if (arr[i] > arr[i + 1])
+			{
+				int tmp = arr[i];
+				arr[i] = arr[i + 1];
+				arr[i + 1] = tmp;
+				swapped = true;
+			}
+		}
+		iteration++;
+	}
+
+	cout << iteration << endl;
+}
+
 int main()
 {
-	double start = -20;
-	double end = 20;
+	/*double start = -15;
+	double end = -14;
 	double spacing = 0.001;
 
 	cout << "start: " << start << endl
@@ -143,6 +207,20 @@ int main()
 		<< "spacing: " << spacing << endl << endl;
 
 	findRootScan(start, end, spacing);
-	
+
+	findRootBinary(-15, -14, 0.001);*/
+
+	/*const int len = 7;
+	int arr[len] = { 1, 3, 7, 4, 6, 2, 5 };
+	binaryInsertionSort(arr, 7);
+
+	for (size_t i = 0; i < len; i++)
+	{
+		cout << arr[i] << " ";
+	}
+	cout << endl;*/
+
+	// bubbleSort();
+
 	return 0;
 }
