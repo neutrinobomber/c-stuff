@@ -196,6 +196,64 @@ void bubbleSort()
 	cout << iteration << endl;
 }
 
+#define LEN 5
+
+void leftDiag(int arr[LEN][LEN])
+{
+	cout << "left diag: " << endl;
+	for (size_t i = 0; i < LEN; i++)
+	{
+		cout << arr[i][i] << " ";
+	}
+	cout << endl;
+}
+
+void rightDiag(int arr[LEN][LEN])
+{
+	cout << "right diag: " << endl;
+	for (size_t i = 0; i < LEN; i++)
+	{
+		cout << arr[i][LEN - i - 1] << " ";
+	}
+	cout << endl;
+}
+
+void rightUpper(int arr[LEN][LEN])
+{
+	cout << "right upper: " << endl;
+	for (int i = 0; i < LEN; i++)
+		for (int j = 0; j < LEN - i - 1; j++)
+			cout << arr[i][j] << " ";
+	cout << endl;
+}
+
+void leftLower(int arr[LEN][LEN])
+{
+	cout << "left lower: " << endl;
+	for (int i = 0; i < LEN; i++)
+		for (int j = 0; j < i; j++)
+			cout << arr[i][j] << " ";
+	cout << endl;
+}
+
+void leftUpper(int arr[LEN][LEN])
+{
+	cout << "left upper: " << endl;
+	for (int i = 0; i < LEN; i++)
+		for (int j = i + 1; j < LEN; j++)
+			cout << arr[i][j] << " ";
+	cout << endl;
+}
+
+void rightLower(int arr[LEN][LEN])
+{
+	cout << "right lower: " << endl;
+	for (int i = 0; i < LEN; i++)
+		for (int j = LEN - i; j < LEN; j++)
+			cout << arr[i][j] << " ";
+	cout << endl;
+}
+
 int main()
 {
 	/*double start = -15;
@@ -221,6 +279,21 @@ int main()
 	cout << endl;*/
 
 	// bubbleSort();
+	int arr[LEN][LEN] = 
+	{
+		{ 1, 2, 3, 4, 5 },
+		{ 6, 7, 8, 9, 10 },
+		{ 11, 12, 13, 14, 15 },
+		{ 16, 17, 18, 19, 20 },
+		{ 21, 22, 23, 24, 25 }
+	};
+
+	rightDiag(arr);
+	leftDiag(arr);
+	leftUpper(arr);
+	leftLower(arr);
+	rightUpper(arr);
+	rightLower(arr);
 
 	return 0;
 }
