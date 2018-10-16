@@ -1,9 +1,10 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 
 using namespace std;
 
-void binaryInsertionSort(int arr[], int len)
+void BinaryInsertionSort(int arr[], int len)
 {
 	for (int i = 1; i < len; i++)
 	{
@@ -267,19 +268,19 @@ int main()
 	findRootScan(start, end, spacing);
 
 	findRootBinary(-15, -14, 0.001);*/
-
-	/*const int len = 7;
-	int arr[len] = { 1, 3, 7, 4, 6, 2, 5 };
-	binaryInsertionSort(arr, 7);
+	
+	const int len = 7;
+	int arr[] = { 1, 3, 7, 4, 6, 2, 5 };
+	BinaryInsertionSort(arr, len);
 
 	for (size_t i = 0; i < len; i++)
 	{
 		cout << arr[i] << " ";
 	}
-	cout << endl;*/
+	cout << endl;
 
 	// bubbleSort();
-	int arr[LEN][LEN] = 
+	/*int arr[LEN][LEN] = 
 	{
 		{ 1, 2, 3, 4, 5 },
 		{ 6, 7, 8, 9, 10 },
@@ -293,7 +294,7 @@ int main()
 	leftUpper(arr);
 	leftLower(arr);
 	rightUpper(arr);
-	rightLower(arr);
+	rightLower(arr);*/
 
 	return 0;
 }
