@@ -1,5 +1,6 @@
 #include "pch.h"
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -36,7 +37,7 @@ void FindRootBinary(long double left, long double right, long double delta, long
 			distance = fabs(left - right);
 		} while (!(distance <= delta || foundMid == true));
 
-		cout << mid << endl;
+		cout << setprecision(20) << mid << endl;
 	}
 	else
 	{
@@ -47,7 +48,11 @@ void FindRootBinary(long double left, long double right, long double delta, long
 int main()
 {
 	long double a = 1;
-	FindRootBinary(0, 10, pow<long double, long double>(10, -20), a);
+
+	while (cin >> a)
+	{
+		FindRootBinary(0, 10, pow<long double, long double>(10, -5), a);
+	}
 
 	return 0;
 }
