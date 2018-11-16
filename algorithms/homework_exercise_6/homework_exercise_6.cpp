@@ -10,21 +10,25 @@ void PrintHanoi(int towers, char from, char to, char through)
 }
 
 unsigned copies = 0;
-void Hanoi(int towers, char from, char to, char through)
+void Hanoi(int towers, char a, char b, char c)
 {
 	copies++;
 
 	if (towers > 1)
 	{
-		Hanoi(towers - 1, from, through, to);
+		Hanoi(towers - 1, a, c, b);
 
-		PrintHanoi(towers, from, to, through);
+		cout << towers << " " << a << b << c << endl;
 
-		Hanoi(towers - 1, through, to, from);
+		// PrintHanoi(towers, a, b, c);
+
+		Hanoi(towers - 1, c, b, a);
 	}
 	else
 	{
-		PrintHanoi(towers, from, to, through);
+		cout << towers << " " << a << b << c << endl;
+
+		// PrintHanoi(towers, a, b, c);
 	}
 }
 
