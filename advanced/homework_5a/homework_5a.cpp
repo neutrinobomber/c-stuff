@@ -1,6 +1,9 @@
 #include "pch.h"
+
+// Александър Янков F87134
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 
 using namespace std;
 
@@ -12,7 +15,7 @@ long double Func(long double x, long double a)
 	return pow(x, 5) - 2 * pow(x, 3) - a * pow(x, 2) - x - 34;
 }
 
-void FindRootBinary(long double left, long double right, long double delta, long double param)
+void FindRoot(long double left, long double right, long double delta, long double param)
 {
 	if (Func(left, param) * Func(right, param) < 0)
 	{
@@ -48,10 +51,9 @@ void FindRootBinary(long double left, long double right, long double delta, long
 int main()
 {
 	long double a = 1;
-
 	while (cin >> a)
 	{
-		FindRootBinary(0, 10, pow<long double, long double>(10, -5), a);
+		FindRoot(0, 10, pow<long double, long double>(10, -20), a);
 	}
 
 	return 0;
