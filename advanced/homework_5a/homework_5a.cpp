@@ -10,24 +10,30 @@ using namespace std;
 // F87134
 // x^5 - 2x^3 - ax^2 - x - 34 = 0
 
-long double Func(long double x, long double a)
+typedef long double ld;
+
+ld Func(ld x, ld a)
 {
 	return pow(x, 5) - 2 * pow(x, 3) - a * pow(x, 2) - x - 34;
 }
 
-void FindRoot(long double left, long double right, long double delta, long double param)
+void FindRoot(ld left, ld right, ld delta, ld param)
 {
-	if (Func(left, param) * Func(right, param) < 0)
+	ld res = 0.0;
+
+	res = Func(left, param) * Func(right, param);
+	if (res < (ld)0.0)
 	{
 		bool foundMid = false;
-		long double mid = 0;
-		long double distance = 0;
+		ld mid = 0.0;
+		ld distance = 0.0;
 
 		do
 		{
-			mid = (left + right) / 2.;
+			mid = (left + right) / (ld)2.0;
 
-			if (Func(right, param) * Func(mid, param) < 0)
+			res = Func(right, param) * Func(mid, param);
+			if (res < (ld)0.0)
 			{
 				left = mid;
 			}
@@ -36,9 +42,9 @@ void FindRoot(long double left, long double right, long double delta, long doubl
 				right = mid;
 			}
 
-			foundMid = Func(mid, param) == 0.;
-			distance = fabs(left - right);
-		} while (!(distance <= delta || foundMid == true));
+			foundMid = Func(mid, param) == (ld)0.0;
+			distance = abs(left - right);
+		} while (distance > delta && foundMid == false);
 
 		cout << setprecision(20) << mid << endl;
 	}
@@ -50,10 +56,13 @@ void FindRoot(long double left, long double right, long double delta, long doubl
 
 int main()
 {
-	long double a = 1;
+	ld a = 1;
+	ld delta = 0.00000000000000000001;
+	cout << delta << endl;
+
 	while (cin >> a)
 	{
-		FindRoot(0, 10, pow<long double, long double>(10, -20), a);
+		FindRoot(0, 10, delta, a);
 	}
 
 	return 0;
