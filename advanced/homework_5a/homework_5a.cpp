@@ -19,34 +19,32 @@ ld Func(ld x, ld a)
 
 void FindRoot(ld left, ld right, ld delta, ld param)
 {
-	ld res = 0.0;
-
-	res = Func(left, param) * Func(right, param);
-	if (res < (ld)0.0)
+	if (Func(right, param) * Func(left, param) < 0)
 	{
 		bool foundMid = false;
-		ld mid = 0.0;
-		ld distance = 0.0;
+		ld mid = 0;
+		ld currentDistance = 0;
+		ld previousDistance = 0;
 
 		do
 		{
-			mid = (left + right) / (ld)2.0;
+			mid = (left + right) / 2;
 
-			res = Func(right, param) * Func(mid, param);
-			if (res < (ld)0.0)
-			{
-				left = mid;
-			}
-			else
+			if (Func(right, param) * Func(mid, param) > 0)
 			{
 				right = mid;
 			}
+			else
+			{
+				left = mid;
+			}
 
-			foundMid = Func(mid, param) == (ld)0.0;
-			distance = abs(left - right);
-		} while (distance > delta && foundMid == false);
+			foundMid = Func(mid, param) == 0;
+			previousDistance = currentDistance;
+			currentDistance = abs(left - right);
+		} while (currentDistance > delta && currentDistance != previousDistance && foundMid == false);
 
-		cout << setprecision(20) << mid << endl;
+		cout << setprecision(20) << fixed << mid << endl;
 	}
 	else
 	{
@@ -58,7 +56,6 @@ int main()
 {
 	ld a = 1;
 	ld delta = 0.00000000000000000001;
-	cout << delta << endl;
 
 	while (cin >> a)
 	{
