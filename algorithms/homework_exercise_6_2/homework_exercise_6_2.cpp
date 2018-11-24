@@ -1,40 +1,40 @@
 #include "pch.h"
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
+template <typename T>
 class Element
 {
 public:
 	Element* next;
-	int data;
+	T data;
 
-	Element() : next(nullptr), data(0) {}
-	Element(Element* next, int data) : next(next), data(data) {}
+	Element(Element* next, T data) : next(next), data(data) {}
 };
 
+template <typename T>
 class Stack
 {
 private:
-	Element* begin;
+	Element<T>* begin;
 public:
 	Stack() : begin(nullptr) {}
 
-	int Push(int data)
+	T Push(T data)
 	{
-		Element* newBegin = new Element;
-		newBegin->data = data;
-		newBegin->next = this->begin;
+		Element<T>* newBegin = new Element<T>(this->begin, data);
 		this->begin = newBegin;
 
 		return data;
 	}
 
-	int Pop()
+	T Pop()
 	{
-		int oldData = this->begin->data;
+		T oldData = this->begin->data;
 
-		Element* next = this->begin->next;
+		Element<T>* next = this->begin->next;
 		delete this->begin;
 		this->begin = next;
 
@@ -49,15 +49,22 @@ public:
 
 int main()
 {
-	Stack test;
-	test.Push(1);
-	test.Push(2);
-	test.Push(3);
-
-	while (!test.IsEmpty())
+	Stack<char> collection;
+	
+	char symbol = ' ';
+	string line;
+	getline(cin, line);
+	istringstream iss(line);
+	while (iss >> symbol)
 	{
-		cout << test.Pop() << endl;
+		collection.Push(symbol);
 	}
+
+	while (!collection.IsEmpty())
+	{
+		cout << collection.Pop();
+	}
+	cout << endl;
 
 	return 0;
 }
