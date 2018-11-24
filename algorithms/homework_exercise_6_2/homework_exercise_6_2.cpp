@@ -8,35 +8,30 @@ template <typename T>
 class Element
 {
 public:
-	Element* next;
+	shared_ptr<Element> next;
 	T data;
 
-	Element(Element* next, T data) : next(next), data(data) {}
+	Element(shared_ptr<Element> next, T data) : next(next), data(data) {}
 };
 
 template <typename T>
 class Stack
 {
 private:
-	Element<T>* begin;
+	shared_ptr<Element<T>> begin;
 public:
 	Stack() : begin(nullptr) {}
 
 	T Push(T data)
 	{
-		Element<T>* newBegin = new Element<T>(this->begin, data);
-		this->begin = newBegin;
-
+		this->begin = make_shared<Element<T>>(this->begin, data);
 		return data;
 	}
 
 	T Pop()
 	{
 		T oldData = this->begin->data;
-
-		Element<T>* next = this->begin->next;
-		delete this->begin;
-		this->begin = next;
+		this->begin = this->begin->next;
 
 		return oldData;
 	}
