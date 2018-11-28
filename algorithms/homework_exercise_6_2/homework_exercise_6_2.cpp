@@ -1,6 +1,7 @@
 #include "pch.h"
 #include <iostream>
 #include <sstream>
+#include <memory>
 
 using namespace std;
 
