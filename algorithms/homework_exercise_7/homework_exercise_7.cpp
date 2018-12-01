@@ -37,7 +37,7 @@ public:
 
 	void Insert(int data)
 	{
-		auto container = make_shared<Node>(data);
+		shared_ptr<Node> container(new Node(data));
 
 		if (this->begin == nullptr)
 		{
