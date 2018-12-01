@@ -1,4 +1,6 @@
-#include "pch.h"
+﻿#include "pch.h"
+
+// Александър Янков F87134
 #include <iostream>
 #include <string>
 #include <sstream>
