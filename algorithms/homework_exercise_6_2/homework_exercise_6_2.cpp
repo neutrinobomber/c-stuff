@@ -6,13 +6,23 @@
 using namespace std;
 
 template <typename T>
-class Element
+struct Element
 {
-public:
+private:
 	shared_ptr<Element> next;
 	T data;
-
+public:
 	Element(shared_ptr<Element> next, T data) : next(next), data(data) {}
+
+	T GetData() const
+	{
+		return this->data;
+	}
+
+	shared_ptr<Element> GetNext() const
+	{
+		return this->next;
+	}
 };
 
 template <typename T>
@@ -31,8 +41,8 @@ public:
 
 	T Pop()
 	{
-		T oldData = this->begin->data;
-		this->begin = this->begin->next;
+		T oldData = this->begin->GetData();
+		this->begin = this->begin->GetNext();
 
 		return oldData;
 	}
@@ -47,6 +57,7 @@ int main()
 {
 	Stack<char> collection;
 	
+	cout << "input: ";
 	char symbol = ' ';
 	string line;
 	getline(cin, line);
@@ -56,6 +67,7 @@ int main()
 		collection.Push(symbol);
 	}
 
+	cout << "output: ";
 	while (!collection.IsEmpty())
 	{
 		cout << collection.Pop();
