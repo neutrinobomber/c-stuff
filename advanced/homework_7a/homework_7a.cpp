@@ -1,5 +1,6 @@
-#include "pch.h"
+﻿#include "pch.h"
 
+// Александър Янков F87134
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -37,7 +38,7 @@ void findMinRec(const vector<unsigned>& arr, int i, int sumCalculated, int sumTo
 void findMin(const vector<unsigned>& arr)
 {
 	int sumTotal = 0;
-	for (int i = 0; i < arr.size(); i++)
+	for (size_t i = 0; i < arr.size(); i++)
 	{
 		sumTotal += arr[i];
 	}

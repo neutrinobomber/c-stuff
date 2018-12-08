@@ -1,4 +1,6 @@
-#include "pch.h"
+﻿#include "pch.h"
+
+// Александър Янков F87134
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,7 +10,7 @@
 
 using namespace std;
 
-void find_lis(vector<unsigned> &input, vector<unsigned> &result)
+void FindLIS(vector<unsigned> &input, vector<unsigned> &result)
 {
 	vector<unsigned> lis(input.size());
 	unsigned u = 0;
@@ -73,7 +75,7 @@ int main()
 		}
 
 		vector<unsigned> res;
-		find_lis(elements, res);
+		FindLIS(elements, res);
 		cout << res.size() << endl;
 	}
 
