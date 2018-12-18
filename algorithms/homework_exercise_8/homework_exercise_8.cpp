@@ -17,7 +17,7 @@ public:
 
 Node* ibd(int n)
 {
-	Node* darj;
+	Node* newNode;
 
 	if (n > 0)
 	{
@@ -28,11 +28,11 @@ Node* ibd(int n)
 		cout << "x: ";
 		cin >> x;
 
-		darj = new Node(x);
-		darj->left = ibd(nl);
-		darj->right = ibd(nd);
+		newNode = new Node(x);
+		newNode->left = ibd(nl);
+		newNode->right = ibd(nd);
 
-		return darj;
+		return newNode;
 	}
 	else
 	{
@@ -40,24 +40,40 @@ Node* ibd(int n)
 	}
 }
 
-int count1 = 1;
-void print(Node* root)
+void PrintInfix(Node* root)
 {
-	if (root)
+	if (root == nullptr)
 	{
-		cout << "\t" << root->data;
-		count1++;
-		print(root->right);
-		count1--;
-		cout << endl;
-		for (int i = 1; i <= count1; i++)
-		{
-			cout << "\t";
-		}
-		count1++;
-		print(root->left);
-		count1--;
+		return;
 	}
+
+	PrintInfix(root->left);
+	cout << root->data << " ";
+	PrintInfix(root->right);
+}
+
+void PrintPrefix(Node* root)
+{
+	if (root == nullptr)
+	{
+		return;
+	}
+
+	cout << root->data << " ";
+	PrintPrefix(root->left);
+	PrintPrefix(root->right);
+}
+
+void PrintPostfix(Node* root)
+{
+	if (root == nullptr)
+	{
+		return;
+	}
+	
+	PrintPostfix(root->left);
+	PrintPostfix(root->right);
+	cout << root->data << " ";
 }
 
 int main()
@@ -69,7 +85,18 @@ int main()
 	cin >> n;
 
 	root = ibd(n);
-	print(root);
+
+	cout << "infix: ";
+	PrintInfix(root);
+	cout << endl;
+
+	cout << "prefix: ";
+	PrintPrefix(root);
+	cout << endl;
+
+	cout << "postfix: ";
+	PrintPostfix(root);
+	cout << endl;
 
 	return 0;
 }

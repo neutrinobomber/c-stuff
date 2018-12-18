@@ -1,5 +1,7 @@
 #include "pch.h"
 #include <iostream>
+#include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -83,12 +85,19 @@ ostream& operator<<(ostream& stream, const List& data)
 int main()
 {
 	List data;
-	data.Insert(2);
-	data.Insert(3);
-	data.Insert(1);
-	data.Insert(3);
 
-	cout << data << endl;
+	cout << "input: ";
+	string input = "";
+	getline(cin, input);
+	stringstream stream(input);
+
+	int value = 0;
+	while (stream >> value)
+	{
+		data.Insert(value);
+	}
+
+	cout << "output: " << data << endl;
 
 	return 0;
 }
