@@ -4,25 +4,20 @@
 #include <queue>
 #include <stack>
 #include <algorithm>
-#include <map>
+#include <unordered_map>
+#include <unordered_set>
 
 using namespace std;
 
-typedef vector<vector<int>> Graph;
+typedef unordered_map<int, vector<int>> Graph;
 
-void DFS(int node, const Graph& data, vector<bool>& visited)
+void DFS(int node, const Graph& data, unordered_set<int>& visited)
 {
-	if (node - 1 > data.size() - 1)
+	if (visited.find(node) == visited.end())
 	{
-		cout << node << " ";
-		return;
-	}
+		visited.insert(node);
 
-	if (!visited[node - 1])
-	{
-		visited[node - 1] = true;
-
-		for (int child : data[node - 1])
+		for (int child : data.at(node))
 		{
 			DFS(child, data, visited);
 		}
@@ -31,14 +26,31 @@ void DFS(int node, const Graph& data, vector<bool>& visited)
 	}
 }
 
-void TraverseDFS(int startNode, const Graph& data)
+void TraverseDFS(int startNode, Graph& data)
 {
-	vector<bool> visited(data.size());
-	fill(visited.begin(), visited.end(), false);
+	unordered_set<int> visited;
 
-	for (size_t el = startNode; el <= data.size(); el++)
+	DFS(startNode, data, visited);
+
+	for (Graph::iterator iter = data.begin(); iter != data.end(); ++iter)
 	{
-		DFS(el, data, visited);
+		int key = iter->first;
+		if (visited.find(key) == visited.end())
+		{
+			DFS(key, data, visited);
+		}
+	}
+}
+
+void InsertEdge(int firstNode, int secondNode, Graph& data)
+{
+	if (data.find(firstNode) != data.end())
+	{
+		data[firstNode].push_back(secondNode);
+	}
+	else
+	{
+		data[firstNode] = vector<int>{ secondNode };
 	}
 }
 
@@ -56,8 +68,8 @@ int main()
 
 			cin >> firstNode >> secondNode;
 
-			vector<int> edge { firstNode, secondNode };
-			graph.push_back(edge);
+			InsertEdge(firstNode, secondNode, graph);
+			InsertEdge(secondNode, firstNode, graph);
 		}
 
 		int startNode = 1 + 87134 % edgesCount;
