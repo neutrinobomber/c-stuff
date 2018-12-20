@@ -1,43 +1,59 @@
-#include "pch.h"
+﻿#include "pch.h"
+
+// Александър Янков F87134
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <stack>
 #include <algorithm>
 #include <unordered_map>
 #include <unordered_set>
+
+#define FN 87134
 
 using namespace std;
 
 typedef unordered_map<int, vector<int>> Graph;
 
-void DFS(int node, const Graph& data, unordered_set<int>& visited)
+void BFS(int startNode, const Graph& data, unordered_set<int>& visited)
 {
-	if (visited.find(node) == visited.end())
+	queue<int> nodes;
+
+	if (visited.find(startNode) == visited.end())
 	{
-		visited.insert(node);
+		nodes.push(startNode);
+		visited.insert(startNode);
+	}
+
+	while (!nodes.empty())
+	{
+		int node = nodes.front();
+		nodes.pop();
+
+		cout << node << " ";
 
 		for (int child : data.at(node))
 		{
-			DFS(child, data, visited);
+			if (visited.find(child) == visited.end())
+			{
+				nodes.push(child);
+				visited.insert(child);
+			}
 		}
-
-		cout << node << " ";
 	}
 }
 
-void TraverseDFS(int startNode, Graph& data)
+void TraverseBFS(int startNode, Graph& data)
 {
 	unordered_set<int> visited;
 
-	DFS(startNode, data, visited);
+	BFS(startNode, data, visited);
 
 	for (Graph::iterator iter = data.begin(); iter != data.end(); ++iter)
 	{
 		int key = iter->first;
 		if (visited.find(key) == visited.end())
 		{
-			DFS(key, data, visited);
+			BFS(key, data, visited);
 		}
 	}
 }
@@ -58,7 +74,7 @@ int main()
 {
 	Graph graph;
 
-	int edgesCount = 0;
+	unsigned edgesCount = 0;
 	while (cin >> edgesCount)
 	{
 		for (size_t i = 0; i < edgesCount; i++)
@@ -72,8 +88,8 @@ int main()
 			InsertEdge(secondNode, firstNode, graph);
 		}
 
-		int startNode = 1 + 87134 % edgesCount;
-		TraverseDFS(startNode, graph);
+		int startNode = 1 + FN % edgesCount;
+		TraverseBFS(startNode, graph);
 		cout << endl;
 	}
 
