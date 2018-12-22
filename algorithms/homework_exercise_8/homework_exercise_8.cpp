@@ -1,6 +1,6 @@
 #include "pch.h"
 #include <iostream>
-#include <cstring>
+#include <string>
 
 using namespace std;
 
@@ -8,94 +8,123 @@ class Node
 {
 public:
 	char data;
-	Node* left;
-	Node* right;
+	shared_ptr<Node> left;
+	shared_ptr<Node> right;
 
 	Node() {}
 	Node(char data) : data(data), left(nullptr), right(nullptr) {}
 };
 
-Node* ibd(int n)
+class Tree
 {
-	Node* newNode;
+private:
+	shared_ptr<Node> root;
+	unsigned currentElement;
 
-	if (n > 0)
+	shared_ptr<Node> BuildTree(string data, size_t treeSize)
 	{
-		int nl = n / 2;
-		int nd = n - nl - 1;
+		if (treeSize > 0)
+		{
+			size_t leftTreeSize = treeSize / 2;
+			size_t rightTreeSize = treeSize - leftTreeSize - 1;
 
-		char x = 0;
-		cout << "x: ";
-		cin >> x;
+			char element = data[this->currentElement];
+			shared_ptr<Node> newNode(new Node(element));
 
-		newNode = new Node(x);
-		newNode->left = ibd(nl);
-		newNode->right = ibd(nd);
+			this->currentElement += 1;
 
-		return newNode;
-	}
-	else
-	{
-		return nullptr;
-	}
-}
+			newNode->left = this->BuildTree(data, leftTreeSize);
+			newNode->right = this->BuildTree(data, rightTreeSize);
 
-void PrintInfix(Node* root)
-{
-	if (root == nullptr)
-	{
-		return;
+			return newNode;
+		}
+		else
+		{
+			return nullptr;
+		}
 	}
 
-	PrintInfix(root->left);
-	cout << root->data << " ";
-	PrintInfix(root->right);
-}
-
-void PrintPrefix(Node* root)
-{
-	if (root == nullptr)
+	void Infix(shared_ptr<Node> node)
 	{
-		return;
+		if (node == nullptr)
+		{
+			return;
+		}
+
+		Infix(node->left);
+		cout << node->data << " ";
+		Infix(node->right);
 	}
 
-	cout << root->data << " ";
-	PrintPrefix(root->left);
-	PrintPrefix(root->right);
-}
-
-void PrintPostfix(Node* root)
-{
-	if (root == nullptr)
+	void Prefix(shared_ptr<Node> node)
 	{
-		return;
+		if (node == nullptr)
+		{
+			return;
+		}
+
+		cout << node->data << " ";
+		Prefix(node->left);
+		Prefix(node->right);
 	}
-	
-	PrintPostfix(root->left);
-	PrintPostfix(root->right);
-	cout << root->data << " ";
-}
+
+	void Postfix(shared_ptr<Node> node)
+	{
+		if (node == nullptr)
+		{
+			return;
+		}
+
+		Postfix(node->left);
+		Postfix(node->right);
+		cout << node->data << " ";
+	}
+
+public:
+	Tree() : root(nullptr) {}
+
+	void Build(string data)
+	{
+		this->root = nullptr;
+		this->currentElement = 0;
+		this->root = this->BuildTree(data, data.size());
+	}
+
+	void PrintInfix()
+	{
+		Infix(this->root);
+	}
+
+	void PrintPrefix()
+	{
+		this->Prefix(root);
+	}
+
+	void PrintPostfix()
+	{
+		this->Postfix(this->root);
+	}
+};
 
 int main()
 {
-	Node* root;
+	string data = "";
+	cout << "input: ";
+	cin >> data;
 
-	cout << "n: ";
-	int n = 0;
-	cin >> n;
-
-	root = ibd(n);
+	Tree tree;
+	tree.Build(data);
 
 	cout << "infix: ";
-	PrintInfix(root);
-	cout << endl;
-
-	cout << "prefix: ";
-	PrintPrefix(root);
+	tree.PrintInfix();
 	cout << endl;
 
 	cout << "postfix: ";
-	PrintPostfix(root);
+	tree.PrintPostfix();
+	cout << endl;
+
+	cout << "prefix: ";
+	tree.PrintPrefix();
 	cout << endl;
 
 	return 0;
