@@ -53,6 +53,17 @@ public:
 	}
 };
 
+template <typename T>
+ostream& operator<<(ostream& stream, Stack<T>& data)
+{
+	while (!data.IsEmpty())
+	{
+		stream << data.Pop() << " ";
+	}
+
+	return stream;
+}
+
 int main()
 {
 	Stack<char> collection;
@@ -68,11 +79,7 @@ int main()
 	}
 
 	cout << "output: ";
-	while (!collection.IsEmpty())
-	{
-		cout << collection.Pop();
-	}
-	cout << endl;
+	cout << collection << endl;
 
 	return 0;
 }
