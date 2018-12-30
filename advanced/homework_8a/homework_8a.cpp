@@ -72,11 +72,11 @@ void InsertEdge(int firstNode, int secondNode, Graph& data)
 
 int main()
 {
-	Graph graph;
-
 	unsigned edgesCount = 0;
 	while (cin >> edgesCount)
 	{
+		Graph graph;
+
 		for (size_t i = 0; i < edgesCount; i++)
 		{
 			int firstNode = 0;
@@ -88,7 +88,8 @@ int main()
 			InsertEdge(secondNode, firstNode, graph);
 		}
 
-		int startNode = 1 + FN % edgesCount;
+		int verticesCount = graph.size();
+		int startNode = 1 + FN % verticesCount;
 		TraverseBFS(startNode, graph);
 		cout << endl;
 	}
