@@ -178,9 +178,18 @@ public:
 int main()
 {
 	Tree<int> bst;
-	bst.Insert(1);
-	bst.Insert(2);
-	bst.Insert(3);
+	bst.Insert(12);
+	bst.Insert(5);
+	bst.Insert(42);
+	bst.Insert(15);
+	bst.Insert(55);
+	bst.Insert(4);
+	bst.Insert(6);
+	bst.Insert(14);
+	bst.Insert(9);
+	bst.Insert(31);
+	bst.Insert(19);
+	bst.Insert(21);
 
 	cout << "tree: ";
 	bst.PrintInfix();
