@@ -6,18 +6,17 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
-#include <cstdlib>
+
+using namespace std;
 
 #define FN 87134
 
 int main()
 {
-	srand(FN % 100);
-
-	std::string input;
-	while (std::getline(std::cin, input))
+	string input;
+	while (getline(cin, input))
 	{
-		std::stringstream stream(input);
+		stringstream stream(input);
 
 		unsigned m = 0;
 		unsigned n = 0;
@@ -25,13 +24,15 @@ int main()
 
 		stream >> m >> n >> k;
 
-		std::vector<int> numbers;
+		srand(FN % 100);
+		vector<int> numbers;
 		for (size_t i = 1; i <= m; i++)
 		{
 			numbers.push_back(rand() % k);
 		}
 		sort(numbers.begin(), numbers.end());
-		std::cout << numbers[n - 1] << std::endl;
+
+		cout << numbers[n - 1] << endl;
 	}
 
 	return 0;
