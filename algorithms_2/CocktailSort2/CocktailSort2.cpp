@@ -21,6 +21,7 @@ void PrintArr(int arr[], int len)
 void CocktailSort2(int arr[], int len)
 {
 	int q = (len - 1) / 2;
+	bool swapped = false;
 
 	for (int i = 0; i < q; i++)
 	{
@@ -40,14 +41,14 @@ void CocktailSort2(int arr[], int len)
 			}
 		}
 
-		if (min != i && min != len - max - 1)
-		{
-			Swap(arr[i], arr[min]);
-		}
-
 		if (max != len - 1)
 		{
 			Swap(arr[len - 1], arr[max]);
+		}
+
+		if (min != i)
+		{
+			Swap(arr[i], arr[min]);
 		}
 
 		len -= 1;
@@ -57,7 +58,7 @@ void CocktailSort2(int arr[], int len)
 int main()
 {
 	const int len = 5;
-	int arr[len] = { 5, 4, 3, 2, 1 };
+	int arr[len] = { -5, 4, 3, -2, 1 };
 	CocktailSort2(arr, len);
 
 	PrintArr(arr, len);
