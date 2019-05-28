@@ -50,8 +50,8 @@ void HeapSort(int arr[], int len)
 
 int main()
 {
-	const int len = 6;
-	int arr[len] = { 5, 5, 4, 3, 2, -1 };
+	const int len = 5;
+	int arr[len] = { 4, 10, 3, 5, 1 };
 
 	HeapSort(arr, len);
 
