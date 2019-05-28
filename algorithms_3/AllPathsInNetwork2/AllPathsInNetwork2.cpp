@@ -8,51 +8,28 @@
 using namespace std;
 
 typedef unordered_map<int, vector<int>> Graph;
+int counter = 0;
 
-void DFS(int startNode, const Graph& data, unordered_set<int>& visited)
+void DFS(Graph& graph, int v)
 {
-	stack<int> nodes;
-
-	if (visited.find(startNode) == visited.end())
+	if (graph.find(v) != graph.end())
 	{
-		nodes.push(startNode);
-		visited.insert(startNode);
-	}
-
-	while (!nodes.empty())
-	{
-		int node = nodes.top();
-		nodes.pop();
-
-		cout << node << " ";
-
-		if (data.find(node) != data.end())
+		for (int u : graph.at(v))
 		{
-			for (int child : data.at(node))
-			{
-				if (visited.find(child) == visited.end())
-				{
-					nodes.push(child);
-					visited.insert(child);
-				}
-			}
+			DFS(graph, u);
+			counter++;
 		}
 	}
 }
 
 void TraverseDFS(int startNode, Graph& data)
 {
-	unordered_set<int> visited;
-
-	DFS(startNode, data, visited);
+	//DFS(data, startNode);
 
 	for (Graph::iterator iter = data.begin(); iter != data.end(); ++iter)
 	{
 		int key = iter->first;
-		if (visited.find(key) == visited.end())
-		{
-			DFS(key, data, visited);
-		}
+		DFS(data, key);
 	}
 }
 
@@ -105,7 +82,7 @@ int main()
 
 	int startNode = 1;
 	TraverseDFS(startNode, graph);
-	cout << endl;
+	cout << counter << endl;
 
 	return 0;
 }
