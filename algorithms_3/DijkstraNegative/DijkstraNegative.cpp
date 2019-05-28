@@ -32,7 +32,7 @@ void printPath(const vector<int>& parent, int current)
 	cout << parent[current] << " ";
 }
 
-void Dijkstra(vector<Edge>& graph, int startNode)
+void Dijkstra(vector<Edge>& graph, int startNode, int modifier)
 {
 	set<int> nodes;
 	for (auto edge : graph)
@@ -96,14 +96,15 @@ void Dijkstra(vector<Edge>& graph, int startNode)
 		}
 	}
 
-	/*for (size_t i = 1; i < distances.size(); i++)
+	for (size_t i = 1; i < distances.size(); i++)
 	{
 		if (distances[i] != infinity)
 		{
-			cout << distances[i] << " ";
+			cout << distances[i] - modifier << " ";
 		}
 	}
-	cout << endl;*/
+	cout << endl;
+
 	printPath(parent, parent.size() - 1);
 	cout << parent.size() - 1 << " ";
 }
@@ -121,7 +122,7 @@ void Dijkstra(vector<Edge>& graph, int startNode)
 4 6 5
 5 6 1
 5 7 5
-6 8 6
+6 8 -6
 6 9 6
 7 8 1
 8 9 1
@@ -137,6 +138,7 @@ int main()
 	int beginNode = 0;
 	int endNode = 0;
 	int weight = 0;
+	int minWeight = infinity;
 	vector<Edge> graph;
 	set<int> nodes;
 	for (size_t i = 1; i <= edgesCount; i++)
@@ -145,10 +147,25 @@ int main()
 		nodes.insert(beginNode);
 		nodes.insert(endNode);
 
+		if (weight < minWeight)
+		{
+			minWeight = weight;
+		}
+
 		graph.emplace_back(Edge(beginNode, endNode, weight));
 	}
 
-	Dijkstra(graph, 1);
+	int modifier = 0;
+	if (minWeight != infinity && minWeight < 0)
+	{
+		modifier = (minWeight * (-1)) + 1;
+		for (int i = 0; i < graph.size(); i++)
+		{
+			graph[i].weight += modifier;
+		}
+	}
+
+	Dijkstra(graph, 1, modifier);
 
 	return 0;
 }
