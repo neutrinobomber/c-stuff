@@ -34,17 +34,6 @@ void deleteMatrix(int* matrix[], int rows)
 	delete[] matrix;
 }
 
-void copyMatrix(int* from[], int* to[], int rows, int cols)
-{
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
-		{
-			to[i][j] = from[i][j];
-		}
-	}
-}
-
 void fillMatrix(int* matrix[], int rows, int cols, int val)
 {
 	for (int i = 0; i < rows; i++)
@@ -56,35 +45,12 @@ void fillMatrix(int* matrix[], int rows, int cols, int val)
 	}
 }
 
-void printSolution(int* dist[], int vertexCount)
-{
-	for (int i = 0; i < vertexCount; i++)
-	{
-		for (int j = 0; j < vertexCount; j++)
-		{
-			if (dist[i][j] == INF)
-			{
-				cout << "INF" << " ";
-			}
-			else
-			{
-				cout << dist[i][j] << " ";
-			}
-		}
-
-		cout << endl;
-	}
-}
-
 void floydWarshall(int* graph[], int vertexCount)
 {
-	//int** dist = initMatrix(vertexCount, vertexCount);
-	//copyMatrix(graph, dist, vertexCount, vertexCount);
-
 	for (int k = 1; k < vertexCount; k++)
 	{
 		for (int i = 1; i < vertexCount; i++)
-		{ 
+		{
 			for (int j = 1; j < vertexCount; j++)
 			{
 				if (graph[i][k] + graph[k][j] < graph[i][j])
@@ -94,40 +60,7 @@ void floydWarshall(int* graph[], int vertexCount)
 			}
 		}
 	}
-
-	printSolution(graph, vertexCount);
-
-	// deleteMatrix(dist, vertexCount);
 }
-
-/*
-4
-4
-1 2 5
-2 3 3
-3 4 1
-1 4 10
-*/
-
-/*
-4
-4
-0 1 5
-1 2 3
-2 3 1
-0 3 10
-*/
-
-/*
-3 6
-1 2 1
-2 1 2
-1 3 2
-3 1 -2
-2 3 3
-3 2 -3
-2
-*/
 
 int main()
 {
@@ -157,15 +90,12 @@ int main()
 		graph[beginNode][endNode] = weight;
 	}
 
+	int start = 0, end = 0;
+	cin >> start >> end;
+
 	floydWarshall(graph, vertexCount);
 
-	for (size_t i = 1; i < vertexCount; i++)
-	{
-		for (size_t i = 0; i < vertexCount; i++)
-		{
-
-		}
-	}
+	cout << graph[start][end - 1] << endl;
 
 	deleteMatrix(graph, vertexCount);
 

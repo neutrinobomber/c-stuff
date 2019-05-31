@@ -21,15 +21,15 @@ public:
 		first(first), second(second), weight(weight) {}
 };
 
-void printPath(const vector<int>& parent, int current, int startNode)
+void printPath(const vector<int>& parent, int current)
 {
-	if (current == startNode)
+	if (current == 1)
 	{
 		return;
 	}
 
-	printPath(parent, parent[current], startNode);
-	cout << current << " ";
+	printPath(parent, parent[current]);
+	cout << parent[current] << " ";
 }
 
 void Dijkstra(vector<Edge>& graph, int startNode, int modifier)
@@ -96,21 +96,29 @@ void Dijkstra(vector<Edge>& graph, int startNode, int modifier)
 		}
 	}
 
-	cout << startNode << " ";
-	printPath(parent, parent.size() - 1, startNode);
-	cout << parent[parent.size() - 1];
-	cout << endl;
-
-	int cost = 0;
 	for (size_t i = 1; i < distances.size(); i++)
 	{
 		if (distances[i] != infinity)
 		{
-			cost += distances[i] - modifier;
+			cout << distances[i] - modifier << " ";
 		}
 	}
-	cout << cost << endl;
+	cout << endl;
+
+	/*printPath(parent, parent.size() - 1);
+	cout << parent.size() - 1 << " ";*/
 }
+
+/*
+3 6
+1 2 1
+2 1 2
+1 3 2
+3 1 -2
+2 3 3
+3 2 -3
+2
+*/
 
 int main()
 {
