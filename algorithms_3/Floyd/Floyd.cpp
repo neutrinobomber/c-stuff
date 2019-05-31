@@ -110,15 +110,6 @@ void floydWarshall(int* graph[], int vertexCount)
 */
 
 /*
-4
-4
-0 1 5
-1 2 3
-2 3 1
-0 3 10
-*/
-
-/*
 3 6
 1 2 1
 2 1 2
