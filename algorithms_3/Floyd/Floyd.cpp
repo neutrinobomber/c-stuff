@@ -159,14 +159,6 @@ int main()
 
 	floydWarshall(graph, vertexCount);
 
-	for (size_t i = 1; i < vertexCount; i++)
-	{
-		for (size_t i = 0; i < vertexCount; i++)
-		{
-
-		}
-	}
-
 	deleteMatrix(graph, vertexCount);
 
 	return 0;
