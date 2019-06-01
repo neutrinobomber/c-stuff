@@ -29,7 +29,7 @@ void printPath(const vector<int>& parent, int current, int startNode)
 	}
 
 	printPath(parent, parent[current], startNode);
-	cout << current << " ";
+	cout << parent[current] << " ";
 }
 
 void Dijkstra(vector<Edge>& graph, int startNode, int modifier)
@@ -96,20 +96,17 @@ void Dijkstra(vector<Edge>& graph, int startNode, int modifier)
 		}
 	}
 
-	cout << startNode << " ";
-	printPath(parent, parent.size() - 1, startNode);
-	cout << parent[parent.size() - 1];
-	cout << endl;
-
-	int cost = 0;
 	for (size_t i = 1; i < distances.size(); i++)
 	{
 		if (distances[i] != infinity)
 		{
-			cost += distances[i] - modifier;
+			cout << distances[i] - modifier << " ";
 		}
 	}
-	cout << cost << endl;
+	cout << endl;
+
+	printPath(parent, parent.size() - 1, startNode);
+	cout << parent.size() - startNode - 1 << " ";
 }
 
 int main()
@@ -149,9 +146,7 @@ int main()
 		}
 	}
 
-	int start = 1;
-	cin >> start;
-	Dijkstra(graph, start, modifier);
+	Dijkstra(graph, 1, modifier);
 
 	return 0;
 }
